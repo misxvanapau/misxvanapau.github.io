@@ -50,9 +50,9 @@ html, body {
 
 /* ====== PÁGINAS ====== */
 .page {
-  min-height: 100vh;
+  min-height: auto; /* contenido define altura */
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* contenido empieza desde arriba */
   justify-content: center;
   padding: 20px;
   position: relative;
