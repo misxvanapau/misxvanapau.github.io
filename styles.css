@@ -61,7 +61,7 @@ html, body {
   backdrop-filter: blur(10px);
 }
 
-/* ====== EFECTO DE TRANSICIÓN ====== */
+/* ====== EFECTO DE TRANSICIÓN CON IMAGENES FIJAS ====== */
 .page::before {
   content: "";
   position: absolute;
@@ -69,18 +69,18 @@ html, body {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  opacity: 0.50; /* MENOS OPACO */
+  opacity: 0.50; /* MENOS OPACO==== Aquí se le mueve para la transparencia de las imagenes fijas */
   z-index: -1;
   transition: opacity 0.8s ease, transform 1s ease;
 }
 
 /* Fondos alternos */
-.page:nth-child(1)::before { background-image: url('apfoto.jpg'); }
-.page:nth-child(2)::before { background-image: url('bg1.jpg'); }
+.page:nth-child(1)::before { background-image: url('photos/apfoto.jpg'); }
+.page:nth-child(2)::before { background-image: url('photos/bg1.jpg'); }
 .page:nth-child(3)::before { background: var(--main-bg); opacity: 1; }
-.page:nth-child(4)::before { background-image: url('bg2.jpg'); }
+.page:nth-child(4)::before { background-image: url('photos/bg2.jpg'); }
 .page:nth-child(5)::before { background: var(--main-bg); opacity: 1; }
-.page:nth-child(6)::before { background-image: url('bg3.jpg'); }
+.page:nth-child(6)::before { background-image: url('photos/bg3.jpg'); }
 .page:nth-child(7)::before { background: var(--main-bg); opacity: 1; }
 
 /* ====== HERO ====== */
@@ -303,4 +303,3 @@ html, body {
   position: relative;   /* necesario para z-index efectivo */
   z-index: 9999;
 }
-
