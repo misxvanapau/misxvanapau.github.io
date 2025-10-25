@@ -1,0 +1,305 @@
+/* ====== VARIABLES ====== */
+:root {
+  --main-bg: #c5c5c5;
+  --secondary-bg: #03bb85;
+  --main-text: #000000;
+  --secondary-text: #333333;
+  --glass-bg: rgba(255, 255, 255, 0.8); /* MÁS OPACO */
+  --glass-border: rgba(255, 255, 255, 0.45);
+  --highlight: rgba(3, 187, 133, 0.4);
+}
+
+/* ====== BASE ====== */
+* { box-sizing: border-box; }
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: var(--main-text);
+  background: var(--main-bg);
+  scroll-behavior: smooth;
+}
+
+/* Tipografía */
+.title { font-family: 'Domine', serif; font-weight: 700; }
+.section-title { font-family: 'Domine', serif; font-weight: 600; }
+.top-label {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 24px !important;
+  color: var(--secondary-bg);
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Portada: XV AÑOS más grande y en negrita */
+.hero-page .top-label {
+  font-size: 150px; /* 3 veces más grande */
+  font-weight: 900; /* más negrita */
+  letter-spacing: 4px; 
+  margin-bottom: 16px; 
+  text-align: center;
+  color: var(--secondary-bg);
+}
+
+/* Contenedor principal */
+.snap-container {
+  height: 100vh;
+  overflow-y: auto;
+}
+
+/* ====== PÁGINAS ====== */
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+  transition: background 0.6s ease, color 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+/* ====== EFECTO DE TRANSICIÓN ====== */
+.page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  opacity: 0.50; /* MENOS OPACO */
+  z-index: -1;
+  transition: opacity 0.8s ease, transform 1s ease;
+}
+
+/* Fondos alternos */
+.page:nth-child(1)::before { background-image: url('photos/apfoto.jpg'); }
+.page:nth-child(2)::before { background-image: url('photos/bg1.jpg'); }
+.page:nth-child(3)::before { background: var(--main-bg); opacity: 1; }
+.page:nth-child(4)::before { background-image: url('photos/bg2.jpg'); }
+.page:nth-child(5)::before { background: var(--main-bg); opacity: 1; }
+.page:nth-child(6)::before { background-image: url('photos/bg3.jpg'); }
+.page:nth-child(7)::before { background: var(--main-bg); opacity: 1; }
+
+/* ====== HERO ====== */
+.hero-page { position: relative; padding: 0; }
+.hero-bg { position: absolute; inset: 0; overflow: hidden; }
+.hero-img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6); }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.4)); }
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+  padding: 28px 16px;
+}
+.top-label { letter-spacing: 2px; font-size: 14px; margin-bottom: 10px; }
+.title { font-size: 52px; margin: 0 0 8px; text-shadow: 0 2px 6px rgba(0,0,0,0.45); }
+.date { font-size: 18px; opacity: 0.95; }
+.hour { font-size: 20px; margin-top: 6px; font-weight: 600; }
+
+/* ====== BLOQUES DE LIQUID GLASS ====== */
+.center-block {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 28px;
+  border-radius: 24px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg); /* MÁS OPACO */
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: 0 8px 32px rgba(3, 187, 133, 0.2);
+  position: relative;
+  overflow: visible;
+  text-align: center; /* CENTRADO DE TEXTO */
+}
+
+/* Reflejo líquido */
+.center-block::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 40%, var(--highlight) 50%, transparent 60%);
+  opacity: 0.35;
+  transform: translateX(-100%);
+  animation: shimmer 6s infinite;
+  z-index: 0; /* detrás de contenido e íconos */
+}
+@keyframes shimmer { 100% { transform: translateX(100%); } }
+
+/* Borde verde brillante en todos los bloques */
+.center-block::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  border: 2px solid var(--secondary-bg);
+  opacity: 0.5;
+  z-index: 1; /* detrás del contenido */
+}
+
+/* ====== ICONOS FIJOS ====== */
+.center-block .icon {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #03bb85;
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  box-shadow: 0 4px 10px #03bb85;
+  z-index: 2; /* siempre encima del shimmer */
+}
+.info-page .icon::before { content: "\f3c5"; }
+.dress-page .icon::before { content: "\f553"; }
+.timeline-page .icon::before { content: "\f017"; }
+.countdown-page .icon::before { content: "\f252"; }
+.gifts-page .icon::before { content: "\f06b"; }
+
+/* ====== TEXTOS ====== */
+.section-title {
+  font-size: 32px;
+  color: var(--secondary-bg);
+  margin: 0 0 6px;
+  text-align: center;
+}
+.subtitle {
+  color: var(--secondary-text);
+  margin-bottom: 12px;
+  font-size: 16px;
+  text-align: center;
+}
+
+/* ====== MAPA ====== */
+.map-wrap {
+  width: 100%;
+  height: 260px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(3, 187, 133, 0.3);
+  box-shadow: 0 0 20px rgba(3, 187, 133, 0.15);
+}
+.map-wrap iframe { width: 100%; height: 100%; border: 0; }
+
+/* ====== BOTONES ====== */
+.open-maps {
+  display: inline-block;
+  margin-top: 12px;
+  background: var(--secondary-bg);
+  color: #fff;
+  padding: 12px 22px;
+  border-radius: 14px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(3, 187, 133, 0.35);
+}
+.open-maps:hover {
+  transform: translateY(-2px);
+  background: #04d597;
+  box-shadow: 0 6px 18px rgba(3, 187, 133, 0.4);
+}
+
+/* ====== COUNTDOWN ====== */
+.countdown-card {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.count-item {
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(10px);
+  padding: 18px;
+  border-radius: 16px;
+  min-width: 80px;
+  border: 1px solid var(--highlight);
+  text-align: center;
+  box-shadow: 0 6px 14px rgba(3, 187, 133, 0.15);
+}
+.count-item span {
+  display: block;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--main-text);
+}
+.count-item small {
+  display: block;
+  color: var(--secondary-text);
+  opacity: 0.9;
+  margin-top: 4px;
+}
+
+/* ====== LÍNEA DEL TIEMPO ====== */
+.timeline {
+  list-style: none;
+  padding: 0;
+  margin: 24px auto;
+  max-width: 400px;
+  position: relative;
+}
+
+.timeline li {
+  position: relative;
+  margin: 28px 0;
+  text-align: center;
+}
+.timeline li time {
+  display: block;
+  font-weight: 700;
+  color: var(--secondary-bg);
+  margin-bottom: 6px;
+}
+
+.timeline li .event {
+  background: rgba(255,255,255,0.5);
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-weight: 500;
+  color: var(--secondary-text);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* ====== RESPONSIVE ====== */
+@media (min-width: 800px) {
+  .title { font-size: 64px; }
+  .section-title { font-size: 38px; }
+}
+@media (max-width: 420px) {
+  .title { font-size: 36px; }
+  .map-wrap { height: 220px; }
+  .count-item { min-width: 70px; padding: 12px; }
+  .count-item span { font-size: 20px; }
+  .timeline::before { left: 8px; }
+  .timeline li { text-align: left; margin-left: 24px; }
+  .timeline li::before { left: 8px; }
+}
+/* --- Opción recomendada: overlays visuales no bloquean clics --- */
+.hero-overlay,
+.hero-bg .overlay,
+.map-wrap .overlay,
+.liquid-glass,
+.diagonal-shadow,
+.glass-overlay {
+  pointer-events: none; /* deja pasar clics hacia los enlaces debajo */
+}
+
+/* Asegurar que los enlaces de "Abrir en Google Maps / Calendar" estén por encima */
+.open-maps {
+  position: relative;   /* necesario para z-index efectivo */
+  z-index: 9999;
+}
