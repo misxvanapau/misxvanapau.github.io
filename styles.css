@@ -77,7 +77,6 @@ html, body {
   transition: opacity 0.8s ease, transform 1s ease;
 }
 
-
 /* Fondos alternos */
 .page:nth-child(1)::before { background-image: url('photos/apfoto.jpg'); }
 .page:nth-child(2)::before { background-image: url('photos/bg1.jpg'); }
@@ -294,7 +293,11 @@ html, body {
   .timeline::before { left: 8px; }
   .timeline li { text-align: left; margin-left: 24px; }
   .timeline li::before { left: 8px; }
+
+  /* Evitar que la sombra diagonal amplíe la página */
+  .page { overflow-x: hidden; }
 }
+
 /* --- Opción recomendada: overlays visuales no bloquean clics --- */
 .hero-overlay,
 .hero-bg .overlay,
