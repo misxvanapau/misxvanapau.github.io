@@ -130,8 +130,11 @@ html, body {
   opacity: 0.35;
   transform: translateX(-100%);
   animation: shimmer 6s infinite;
-  z-index: 0; /* detrás de contenido e íconos */
+  z-index: 0;
+  width: 100%;   /* Asegura que no sobrepase el contenedor */
+  max-width: 100%; /* Seguridad extra en móviles */
 }
+
 @keyframes shimmer { 100% { transform: translateX(100%); } }
 
 /* Borde verde brillante en todos los bloques */
