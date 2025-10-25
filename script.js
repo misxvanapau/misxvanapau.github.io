@@ -55,4 +55,22 @@
     // no hay elementos (por si pruebas fragmentadas)
     console.warn("Elementos del countdown no encontrados en DOM.");
   }
+
+  /* ====== AUDIO DE FONDO ====== */
+  const audio = document.getElementById('bg-audio');
+  if(audio){
+    window.addEventListener('load', () => {
+      audio.play().catch(() => {
+        // Si falla (móvil), reproducir al primer toque
+        const startAudio = () => {
+          audio.play();
+          window.removeEventListener('touchstart', startAudio);
+          window.removeEventListener('click', startAudio);
+        };
+        window.addEventListener('touchstart', startAudio, { once: true });
+        window.addEventListener('click', startAudio, { once: true });
+      });
+    });
+  }
+
 })();
